@@ -1,0 +1,105 @@
+ab -n 500000 -c 50 "http://10.65.128.64:8106/?Action=LoggerTest"
+
+===========================log4j file===========================
+
+Time taken for tests:   88.954 seconds
+Requests per second:    5620.86 [#/sec] (mean)
+Time per request:       8.895 [ms] (mean)
+
+
+Time taken for tests:   88.611 seconds
+Requests per second:    5642.62 [#/sec] (mean)
+Time per request:       8.861 [ms] (mean)
+
+
+===========================log4j async file===========================
+
+Time taken for tests:   80.388 seconds
+Requests per second:    6219.85 [#/sec] (mean)
+Time per request:       8.039 [ms] (mean)
+
+Time taken for tests:   80.306 seconds
+Requests per second:    6226.18 [#/sec] (mean)
+Time per request:       8.031 [ms] (mean)
+
+
+########################################
+
+
+==========================logback file===========================
+
+Time taken for tests:   94.334 seconds
+Requests per second:    5300.29 [#/sec] (mean)
+Time per request:       9.433 [ms] (mean)
+
+====================================logback async file=======================================
+
+<includeCallerData>false</includeCallerData>
+
+Time taken for tests:   25.616 seconds
+Requests per second:    19518.76 [#/sec] (mean)
+Time per request:       2.562 [ms] (mean)
+
+
+<includeCallerData>true</includeCallerData>
+
+Time taken for tests:   29.318 seconds
+Requests per second:    17054.60 [#/sec] (mean)
+Time per request:       2.932 [ms] (mean)
+
+########################################
+
+
+=============================log4j2 file=============================
+
+Time taken for tests:   29.742 seconds
+Requests per second:    16811.23 [#/sec] (mean)
+Time per request:       2.974 [ms] (mean)
+
+
+Time taken for tests:   28.134 seconds
+Requests per second:    17772.32 [#/sec] (mean)
+Time per request:       2.813 [ms] (mean)
+
+
+Time taken for tests:   30.560 seconds
+Requests per second:    16361.34 [#/sec] (mean)
+Time per request:       3.056 [ms] (mean)
+
+=============================log4j2 async file=============================
+
+Time taken for tests:   28.637 seconds
+Requests per second:    17459.85 [#/sec] (mean)
+Time per request:       2.864 [ms] (mean)
+
+=============================log4j2 async logger=============================
+
+Time taken for tests:   25.918 seconds
+Requests per second:    19291.77 [#/sec] (mean)
+Time per request:       2.592 [ms] (mean)
+
+
+Time taken for tests:   28.085 seconds
+Requests per second:    17803.29 [#/sec] (mean)
+Time per request:       2.808 [ms] (mean)
+
+
+Time taken for tests:   27.948 seconds
+Requests per second:    17890.28 [#/sec] (mean)
+Time per request:       2.795 [ms] (mean)
+
+
+Time taken for tests:   26.102 seconds
+Requests per second:    19155.33 [#/sec] (mean)
+Time per request:       2.610 [ms] (mean)
+
+
+Time taken for tests:   27.446 seconds
+Complete requests:      500000
+Requests per second:    18217.68 [#/sec] (mean)
+Time per request:       2.745 [ms] (mean)
+
+
+Time taken for tests:   28.464 seconds
+Requests per second:    17566.01 [#/sec] (mean)
+Time per request:       2.846 [ms] (mean)

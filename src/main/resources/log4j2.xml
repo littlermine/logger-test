@@ -1,0 +1,6 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<configuration xmlns:xi="http://www.w3.org/2001/XInclude"
+               status="warn" name="XIncludeDemo">
+    <xi:include href="log4j-xinclude-appenders.xml"/>
+    <xi:include href="log4j-xinclude-loggers.xml"/>
+</configuration>

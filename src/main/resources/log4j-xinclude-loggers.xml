@@ -1,0 +1,6 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<loggers>
+    <root level="error">
+        <AppenderRef ref="STDOUT"/>
+    </root>
+</loggers>

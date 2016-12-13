@@ -1,0 +1,34 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Configuration>
+    <Appenders>
+        <Console name="Console" target="SYSTEM_OUT">
+            <PatternLayout pattern="%d{HH:mm:ss.SSS} %-5level %t %C{1.}.%M:%L - %msg%n"/>
+        </Console>
+        <File name="File" immediateFlush="false" fileName="/data/logs/test/logger-test-log4j2.log">
+            <PatternLayout pattern="%d{HH:mm:ss.SSS} %-5level %t %C{1.}.%M:%L - %msg%n"/>
+        </File>
+        <!--<RollingFile name="RollingFile" filePattern="/data/logs/test/logger-test-log4j2.log.%d{MM-dd-yy}"
+                    fileName="logger-test-log4j.log">
+           <PatternLayout pattern="%d{HH:mm:ss.SSS} %-5level %t %C{1.}.%M:%L - %msg%n"/>
+       </RollingFile>
+       <Async name="AsyncFile" bufferSize="8192" includeLocation="true">
+           <AppenderRef ref="RollingFile"/>
+       </Async>-->
+
+        <!--<RandomAccessFile name="RandomAccessFile" immediateFlush="false" append="true"
+                          fileName="/data/logs/test/logger-test-log4j2.log">
+            <PatternLayout>
+                <Pattern>%d{HH:mm:ss.SSS} %-5level %t %C{1.}.%M:%L - %msg%n</Pattern>
+            </PatternLayout>
+        </RandomAccessFile>-->
+    </Appenders>
+    <Loggers>
+        <Root level="info" includeLocation="true">
+            <AppenderRef ref="Console"/>
+            <!--<AppenderRef ref="File"/>-->
+            <!--<AppenderRef ref="RollingFile"/>-->
+            <!--<AppenderRef ref="AsyncFile"/>-->
+            <!--<AppenderRef ref="RandomAccessFile"/>-->
+        </Root>
+    </Loggers>
+</Configuration>

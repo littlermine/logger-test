@@ -1,0 +1,4 @@
+ab -n 1000000 -c 50 "http://10.65.128.64:8106/?Action=LoggerTest"
+ab -n 1000000 -c 100 "http://10.65.128.64:8106/?Action=LoggerTest"
+
+-DLog4jContextSelector=org.apache.logging.log4j.core.async.AsyncLoggerContextSelector

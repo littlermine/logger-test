@@ -1,0 +1,33 @@
+<configuration debug="false">
+    <contextListener class="ch.qos.logback.classic.jul.LevelChangePropagator">
+        <resetJUL>true</resetJUL>
+    </contextListener>
+
+    <appender name="console" class="ch.qos.logback.core.ConsoleAppender">
+        <encoder>
+            <pattern>%d{HH:mm:ss.SSS} %-5level %thread %C.%M:%L - %msg%n</pattern>
+        </encoder>
+    </appender>
+
+    <appender name="file" class="ch.qos.logback.core.rolling.RollingFileAppender">
+        <rollingPolicy class="ch.qos.logback.core.rolling.TimeBasedRollingPolicy">
+            <fileNamePattern>/data/logs/test/logger-test-log4j.log.%d{yyyyMMdd}</fileNamePattern>
+            <maxHistory>30</maxHistory>
+        </rollingPolicy>
+        <encoder>
+            <pattern>%d{HH:mm:ss.SSS} %-5level %thread %C.%M:%L - %msg%n</pattern>
+        </encoder>
+    </appender>
+
+    <appender name="asyncFile" class="ch.qos.logback.classic.AsyncAppender">
+        <queueSize>8192</queueSize>
+        <includeCallerData>false</includeCallerData>
+        <appender-ref ref="file"/>
+    </appender>
+
+    <root level="INFO">
+        <!--<appender-ref ref="console"/>-->
+        <!--<appender-ref ref="file"/>-->
+        <appender-ref ref="asyncFile"/>
+    </root>
+</configuration>
