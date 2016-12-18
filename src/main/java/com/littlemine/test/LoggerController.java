@@ -11,9 +11,11 @@ import org.springframework.web.bind.annotation.ResponseBody;
 @RequestMapping(value = "/", method = { RequestMethod.GET, RequestMethod.POST }, produces = { "application/json" })
 public class LoggerController {
 
+    // localhost/Action=LoggerTest
     @ResponseBody
     @RequestMapping(params = { "Action=LoggerTest" })
     public String loggerTest() {
+        TestUtil.log("this is test util");
         //        log.trace("this is logger test interface..trace");
         //        log.debug("this is logger test interface..debug");
         log.info("this is logger test interface..this is logger test interface..this is logger test interface..this is logger test interface..info");

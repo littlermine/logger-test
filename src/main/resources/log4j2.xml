@@ -1,6 +1,27 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<configuration xmlns:xi="http://www.w3.org/2001/XInclude"
-               status="warn" name="XIncludeDemo">
-    <xi:include href="log4j-xinclude-appenders.xml"/>
-    <xi:include href="log4j-xinclude-loggers.xml"/>
-</configuration>
+<Configuration xmlns:xi="http://www.w3.org/2001/XInclude"
+               status="OFF" name="XIncludeDemo">
+
+    <Properties>
+        <Property name="filename">/tmp/logs/logger-test-log4j2.log</Property>
+        <Property name="PerfFile">/tmp/logs/perf-log4j2.log</Property>
+    </Properties>
+
+    <Appenders>
+        <Console name="STDOUT">
+            <PatternLayout pattern="%d{HH:mm:ss.SSS} %-5level %t %C{1.}.%M:%L - %msg%n"/>
+        </Console>
+
+        <xi:include href="log4j-xinclude-appenders.xml"/>
+        <xi:include href="log4j-xinclude-appenders2.xml"/>
+    </Appenders>
+
+    <Loggers>
+        <Root level="info" includeLocation="true">
+            <AppenderRef ref="STDOUT"/>
+            <AppenderRef ref="File"/>
+        </Root>
+        <xi:include href="log4j-xinclude-loggers.xml"/>
+    </Loggers>
+
+</Configuration>

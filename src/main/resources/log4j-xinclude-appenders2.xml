@@ -1,0 +1,6 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<File name="PerfFile" fileName="${PerfFile}" bufferedIO="true" immediateFlush="true">
+    <PatternLayout>
+        <pattern>%d{yyyyMMdd'T'HH:mm:ss.SSS'Z'} - %m%n</pattern>
+    </PatternLayout>
+</File>

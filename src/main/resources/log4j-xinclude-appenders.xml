@@ -1,11 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<appenders>
-    <Console name="STDOUT">
-        <PatternLayout pattern="%m%n"/>
-    </Console>
-    <!--<File name="File" fileName="${filename}" bufferedIO="true" immediateFlush="true">
-        <PatternLayout>
-            <pattern>%d %p %C{1.} [%t] %m%n</pattern>
-        </PatternLayout>
-    </File>-->
-</appenders>
+<File name="File" fileName="${filename}" bufferedIO="true" immediateFlush="true">
+    <PatternLayout>
+        <pattern>%d{HH:mm:ss.SSS} %-5level %t %C{1.}.%M:%L - %msg%n</pattern>
+    </PatternLayout>
+</File>
