@@ -6,7 +6,9 @@
         </Console>
         <RollingFile name="RollingFile" fileName="/data/logs/logger-test/stdout.log"
                      filePattern="/data/logs/logger-test/stdout.log.%d{MM-dd-yyyy}">
-            <PatternLayout pattern="%d{HH:mm:ss.SSS} %-5level %t %C{1.}.%M:%L - %msg%n"/>
+            <PatternLayout pattern="%d{HH:mm:ss.SSS} %-5level %t - %msg%n"/>
+            <!--location factor for performance-->
+            <!--<PatternLayout pattern="%d{HH:mm:ss.SSS} %-5level %t %C{1.}.%M:%L - %msg%n"/>-->
             <Policies>
                 <TimeBasedTriggeringPolicy/>
             </Policies>
