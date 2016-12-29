@@ -14,7 +14,7 @@ public class LoggerController {
 
     @ResponseBody
     @RequestMapping(params = { "Action=LogTest" })
-    public String loggerTest() {
+    public String logTest() {
         log.info("this is logger test interface..this is logger test interface..this is logger test interface..this is info");
         return "{\"Status\":200}";
     }

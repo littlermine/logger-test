@@ -37,10 +37,12 @@ public class LoggerApp extends SpringBootServletInitializer {
 
     private static final int DEFAULT_PORT = 8106;
     private static int port = DEFAULT_PORT;
+    private static boolean notPrintAccessLog = true;
 
     public static void main(String[] args) throws Exception {
         // System.out.println(IS_SECURITY_ENABLED);
         port = NumberUtils.toInt(System.getProperty("port"), DEFAULT_PORT);
+        notPrintAccessLog = "off".equals(System.getProperty("ACCESS_LOG_SWITCH"));
         SpringApplication.run(LoggerApp.class, args);
     }
 
@@ -48,26 +50,6 @@ public class LoggerApp extends SpringBootServletInitializer {
     protected SpringApplicationBuilder configure(SpringApplicationBuilder application) {
         return application.sources(LoggerApp.class);
     }
-
-    // http://m.blog.csdn.net/article/details?id=51306140
-    //    @Bean
-    //    public EmbeddedServletContainerFactory servletContainer() {
-    //        TomcatEmbeddedServletContainerFactory factory = new TomcatEmbeddedServletContainerFactory();
-    //        factory.setPort(port);
-    //        factory.addConnectorCustomizers(new TomcatConnectorCustomizer() {
-    //
-    //            @Override
-    //            public void customize(Connector connector) {
-    //                Http11NioProtocol protocol = (Http11NioProtocol) connector.getProtocolHandler();
-    //                //设置最大连接数
-    //                protocol.setMaxConnections(50000);
-    //                //设置最大线程数
-    //                protocol.setMaxThreads(200);
-    //                protocol.setConnectionTimeout(3000);
-    //            }
-    //        });
-    //        return factory;
-    //    }
 
     @Bean
     public EmbeddedServletContainerFactory servletContainer(
@@ -84,7 +66,9 @@ public class LoggerApp extends SpringBootServletInitializer {
         int _idleTimeout = NumberUtils.toInt(idleTimeout, 60000);
         int _maxJobs = NumberUtils.toInt(maxJobs, 6000);
         factory.addServerCustomizers(getJettyThreadPoolCustomizer(_maxThreads, _minThreads, _idleTimeout, _maxJobs));
-        factory.addServerCustomizers(getJettyRequestLogServerCustomizer());
+        if (!notPrintAccessLog) {
+            factory.addServerCustomizers(getJettyRequestLogServerCustomizer());
+        }
         factory.addServerCustomizers(setConnectionIdleTimeout(0, 3000));
 
         return factory;
@@ -178,5 +162,25 @@ public class LoggerApp extends SpringBootServletInitializer {
         };
         return customizer;
     }
+
+    // http://m.blog.csdn.net/article/details?id=51306140
+    //    @Bean
+    //    public EmbeddedServletContainerFactory servletContainer() {
+    //        TomcatEmbeddedServletContainerFactory factory = new TomcatEmbeddedServletContainerFactory();
+    //        factory.setPort(port);
+    //        factory.addConnectorCustomizers(new TomcatConnectorCustomizer() {
+    //
+    //            @Override
+    //            public void customize(Connector connector) {
+    //                Http11NioProtocol protocol = (Http11NioProtocol) connector.getProtocolHandler();
+    //                //设置最大连接数
+    //                protocol.setMaxConnections(50000);
+    //                //设置最大线程数
+    //                protocol.setMaxThreads(200);
+    //                protocol.setConnectionTimeout(3000);
+    //            }
+    //        });
+    //        return factory;
+    //    }
 
 }
