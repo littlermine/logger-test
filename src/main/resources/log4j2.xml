@@ -4,8 +4,8 @@
         <Console name="Console" target="SYSTEM_OUT">
             <PatternLayout pattern="%d{HH:mm:ss.SSS} %-5level %t %C{1.}.%M:%L - %msg%n"/>
         </Console>
-        <RollingFile name="aaa" fileName="/data/logs/test/log4j2.log"
-                     filePattern="/data/logs/test/log4j2.log.%d{MM-dd-yyyy}">
+        <RollingFile name="RollingFile" fileName="/data/logs/logger-test/stdout.log"
+                     filePattern="/data/logs/logger-test/stdout.log.%d{MM-dd-yyyy}">
             <PatternLayout pattern="%d{HH:mm:ss.SSS} %-5level %t %C{1.}.%M:%L - %msg%n"/>
             <Policies>
                 <TimeBasedTriggeringPolicy/>
@@ -15,7 +15,7 @@
     </Appenders>
     <Loggers>
         <Root level="info" includeLocation="true">
-            <AppenderRef ref="aaa"/>
+            <AppenderRef ref="RollingFile"/>
         </Root>
     </Loggers>
 </Configuration>

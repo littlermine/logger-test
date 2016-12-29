@@ -10,13 +10,13 @@
     <groupId>com.littlermine.test</groupId>
     <artifactId>logger-test</artifactId>
     <version>1.0.0-SNAPSHOT</version>
-    <packaging>war</packaging>
 
     <properties>
+        <java.version>1.8</java.version>
+        <jetty.version>9.3.8.v20160314</jetty.version>
+        <jetty.server.version>9.3.8.v20160314</jetty.server.version>
+        <jetty.webapp.version>9.3.8.v20160314</jetty.webapp.version>
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
-        <start-class>com.littlemine.test.LoggerApp</start-class>
-        <main.basedir>${basedir}/../..</main.basedir>
-        <m2eclipse.wtp.contextRoot>/</m2eclipse.wtp.contextRoot>
     </properties>
 
     <dependencies>
@@ -24,6 +24,10 @@
             <groupId>org.springframework.boot</groupId>
             <artifactId>spring-boot-starter-web</artifactId>
             <exclusions>
+                <exclusion>
+                    <groupId>org.springframework.boot</groupId>
+                    <artifactId>spring-boot-starter-tomcat</artifactId>
+                </exclusion>
                 <exclusion>
                     <groupId>ch.qos.logback</groupId>
                     <artifactId>logback-classic</artifactId>
@@ -36,15 +40,25 @@
         </dependency>
         <dependency>
             <groupId>org.springframework.boot</groupId>
-            <artifactId>spring-boot-starter-tomcat</artifactId>
-        </dependency>
-        <dependency>
-            <groupId>org.apache.tomcat.embed</groupId>
-            <artifactId>tomcat-embed-jasper</artifactId>
-        </dependency>
-        <dependency>
-            <groupId>javax.servlet</groupId>
-            <artifactId>jstl</artifactId>
+            <artifactId>spring-boot-starter-jetty</artifactId>
+            <exclusions>
+                <exclusion>
+                    <artifactId>jetty-jsp</artifactId>
+                    <groupId>org.eclipse.jetty</groupId>
+                </exclusion>
+                <exclusion>
+                    <artifactId>javax-websocket-client-impl</artifactId>
+                    <groupId>org.eclipse.jetty.websocket</groupId>
+                </exclusion>
+                <exclusion>
+                    <artifactId>websocket-server</artifactId>
+                    <groupId>org.eclipse.jetty.websocket</groupId>
+                </exclusion>
+                <exclusion>
+                    <artifactId>javax-websocket-server-impl</artifactId>
+                    <groupId>org.eclipse.jetty.websocket</groupId>
+                </exclusion>
+            </exclusions>
         </dependency>
 
         <dependency>
@@ -106,14 +120,29 @@
             <artifactId>log4j-slf4j-impl</artifactId>
             <version>2.7</version>
         </dependency>
-
     </dependencies>
 
     <build>
         <plugins>
             <plugin>
-                <groupId>org.springframework.boot</groupId>
-                <artifactId>spring-boot-maven-plugin</artifactId>
+                <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-assembly-plugin</artifactId>
+                <version>2.6</version>
+                <configuration>
+                    <finalName>${project.artifactId}</finalName>
+                    <descriptors>
+                        <descriptor>src/main/assembly/assembly.xml</descriptor>
+                    </descriptors>
+                </configuration>
+                <executions>
+                    <execution>
+                        <id>make-assembly</id>
+                        <phase>package</phase>
+                        <goals>
+                            <goal>single</goal>
+                        </goals>
+                    </execution>
+                </executions>
             </plugin>
         </plugins>
     </build>

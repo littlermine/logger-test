@@ -9,11 +9,11 @@ import lombok.extern.slf4j.Slf4j;
 
 @Slf4j
 @Controller
-@RequestMapping(value = "/", method = { RequestMethod.GET, RequestMethod.POST }, produces = { "application/json" })
+@RequestMapping(value = "/", method = { RequestMethod.GET }, produces = { "application/json" })
 public class LoggerController {
 
     @ResponseBody
-    @RequestMapping(params = { "Action=LoggerTest" })
+    @RequestMapping(params = { "Action=LogTest" })
     public String loggerTest() {
         log.info("this is logger test interface..this is logger test interface..this is logger test interface..this is info");
         return "{\"Status\":200}";
