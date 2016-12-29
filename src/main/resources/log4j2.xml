@@ -1,27 +1,21 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<Configuration xmlns:xi="http://www.w3.org/2001/XInclude"
-               status="OFF" name="XIncludeDemo">
-
-    <Properties>
-        <Property name="filename">/tmp/logs/logger-test-log4j2.log</Property>
-        <Property name="PerfFile">/tmp/logs/perf-log4j2.log</Property>
-    </Properties>
-
+<Configuration>
     <Appenders>
-        <Console name="STDOUT">
+        <Console name="Console" target="SYSTEM_OUT">
             <PatternLayout pattern="%d{HH:mm:ss.SSS} %-5level %t %C{1.}.%M:%L - %msg%n"/>
         </Console>
+        <RollingFile name="aaa" fileName="/data/logs/test/log4j2.log"
+                     filePattern="/data/logs/test/log4j2.log.%d{MM-dd-yyyy}">
+            <PatternLayout pattern="%d{HH:mm:ss.SSS} %-5level %t %C{1.}.%M:%L - %msg%n"/>
+            <Policies>
+                <TimeBasedTriggeringPolicy/>
+            </Policies>
+        </RollingFile>
 
-        <xi:include href="log4j-xinclude-appenders.xml"/>
-        <xi:include href="log4j-xinclude-appenders2.xml"/>
     </Appenders>
-
     <Loggers>
         <Root level="info" includeLocation="true">
-            <AppenderRef ref="STDOUT"/>
-            <AppenderRef ref="File"/>
+            <AppenderRef ref="aaa"/>
         </Root>
-        <xi:include href="log4j-xinclude-loggers.xml"/>
     </Loggers>
-
 </Configuration>
